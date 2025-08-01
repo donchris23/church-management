@@ -84,6 +84,11 @@ async function startServer() {
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ status: 'OK', message: 'Server is running' });
+});
+
 // Get all divisions
 app.get('/api/divisions', async (req, res) => {
   try {
